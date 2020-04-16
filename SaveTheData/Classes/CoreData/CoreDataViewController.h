@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  CoreDataViewController.h
 //  SaveTheData
 //
 //  Created by hooyking on 2020/4/15.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
+@interface CoreDataViewController : UITableViewController
 
 @end
 
+NS_ASSUME_NONNULL_END

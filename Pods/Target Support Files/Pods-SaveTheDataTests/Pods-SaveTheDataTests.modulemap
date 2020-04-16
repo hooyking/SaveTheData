@@ -1,0 +1,6 @@
+framework module Pods_SaveTheDataTests {
+  umbrella header "Pods-SaveTheDataTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
