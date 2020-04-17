@@ -59,7 +59,7 @@
     //但是FMDatabaseQueue就不会，它是有序的且在同一个线程执行，会按照程序顺序执行，就不会抢夺什么资源，全部都会成功)
     
     //这个方法插入数据不好弄，可看下边的moreQueue
-    [self moreOperate];
+//    [self moreOperate];
     [self moreQueue];
     
     //这儿顺便讲下对列的操作
@@ -70,6 +70,7 @@
 #pragma mark - 创建表;
 - (void)createTable {
     if ([_myDb open]) {
+        //这儿创建了一个列有 name|sex|age|nickname|phoneNum|nativePlace|photo 的名字为personTable的表
         BOOL result = [_myDb executeUpdate:@"create table if not exists personTable (name text, sex integer, age integer, nickname text, phoneNum text, nativePlace text, photo blob)"];
         if (result) {
             NSLog(@"创建表成功");
@@ -200,52 +201,57 @@
         else {
             NSLog(@"查询失败");
         }
+        [_myDb close];
     }
 }
 
 #pragma mark - 多个数据插入线程安全
 - (void)moreQueue {
     //方法二里面线程安全又有两种方式，ok继续看
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *dbpath = [path stringByAppendingPathComponent:@"hooyking.db"];
-    FMDatabaseQueue *dbQueue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
-    //第一种(一般就用这种就能保证线程安全了，那条数据有错，那么有错那条就不会插入进去,例如id改为i,自己看效果)
-    [dbQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"insert into studentsTable1 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:500], @"王五", [NSNumber numberWithInteger:1]];
-        [db executeUpdate:@"insert into studentsTable2 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:600], @"陆六", [NSNumber numberWithInteger:1]];
-        [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:700], @"史真香", [NSNumber numberWithInteger:0]];
-    }];
-    //第二种事务(当插入数据有错时，直接取消将插入的数据，可以改下列试试，例如id改为i,自己看效果)
-//    [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-//        BOOL res1 = [db executeUpdate:@"insert into studentsTable1 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:500], @"王五", [NSNumber numberWithInteger:1]];
-//        BOOL res2 = [db executeUpdate:@"insert into studentsTable2 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:600], @"陆六", [NSNumber numberWithInteger:1]];
-//        BOOL res3 = [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:700], @"史真香", [NSNumber numberWithInteger:0]];
-//        if (!res1 || !res2 || !res3) { //我这样写就是三条任何一条有错，这三条就一条都不插入,这个判断条件若是不写，那就会默认哪一条有错，那一条就不会加入，但是其他的正确的会插入
-//            *rollback = YES;
-//        }
-//        [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:800], @"你真溜", [NSNumber numberWithInteger:0]];
-//    }];
+    if ([_myDb open]) {
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        NSString *dbpath = [path stringByAppendingPathComponent:@"hooyking.db"];
+        FMDatabaseQueue *dbQueue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
+        //第一种(一般就用这种就能保证线程安全了，那条数据有错，那么有错那条就不会插入进去,例如id改为i,自己看效果)
+        [dbQueue inDatabase:^(FMDatabase *db) {
+            [db executeUpdate:@"insert into studentsTable1 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:500], @"王五", [NSNumber numberWithInteger:1]];
+            [db executeUpdate:@"insert into studentsTable2 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:600], @"陆六", [NSNumber numberWithInteger:1]];
+            [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:700], @"史真香", [NSNumber numberWithInteger:0]];
+        }];
+        //第二种事务(当插入数据有错时，直接取消将插入的数据，可以改下列试试，例如id改为i,自己看效果)
+//        [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+//            BOOL res1 = [db executeUpdate:@"insert into studentsTable1 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:500], @"王五", [NSNumber numberWithInteger:1]];
+//            BOOL res2 = [db executeUpdate:@"insert into studentsTable2 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:600], @"陆六", [NSNumber numberWithInteger:1]];
+//            BOOL res3 = [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:700], @"史真香", [NSNumber numberWithInteger:0]];
+//            if (!res1 || !res2 || !res3) { //我这样写就是三条任何一条有错，这三条就一条都不插入,这个判断条件若是不写，那就会默认哪一条有错，那一条就不会加入，但是其他的正确的会插入
+//                *rollback = YES;
+//            }
+//            [db executeUpdate:@"insert into studentsTable3 (id, name, sex) values (?,?,?)",[NSNumber numberWithInteger:800], @"你真溜", [NSNumber numberWithInteger:0]];
+//        }];
     
-    //查询数据
-    NSString *selectSql = @"select * from studentsTable1;"
-                           "select * from studentsTable2;"
-                           "select * from studentsTable3;";
-    BOOL selectResult = [_myDb executeStatements:selectSql withResultBlock:^int(NSDictionary *dictionary) {
-        NSLog(@"moreQueue查询到的结果:%@", [[dictionary allValues] componentsJoinedByString:@","]);
-        return 0;
-    }];
-    if (selectResult) {
-        NSLog(@"查询成功");
-    }
-    else {
-        NSLog(@"查询失败");
+        //查询数据
+        NSString *selectSql = @"select * from studentsTable1;"
+                               "select * from studentsTable2;"
+                               "select * from studentsTable3;";
+        BOOL selectResult = [_myDb executeStatements:selectSql withResultBlock:^int(NSDictionary *dictionary) {
+            NSLog(@"moreQueue查询到的结果:%@", [[dictionary allValues] componentsJoinedByString:@","]);
+            return 0;
+        }];
+        if (selectResult) {
+            NSLog(@"查询成功");
+        }
+        else {
+            NSLog(@"查询失败");
+        }
+        
+        [_myDb close];
     }
 }
 
 #pragma mark - 对列的操作
 - (void)operateColumn {
     if ([_myDb open]) {
-        //添加列
+        //这儿添加了添加名字为temp类型为text的列
         BOOL addColumnRes = [_myDb executeUpdate:@"alter table studentsTable1 add temp text"];
         if (addColumnRes) {
             NSLog(@"添加列成功");
@@ -255,12 +261,11 @@
         }
         
         //删除列
-        //sqlite不支持alter对列进行修改与删除的方法来的，所以要删除列的替代方式为新建一个没有你要删除的列的表，
+        //SQLite不支持alter对列进行修改与删除的方法来的，所以要删除列的替代方式为新建一个没有你要删除的列的表，
         //第一步：create table testTable(id integer, name text, sex integer);这个表没有列temp了，
         //第二步：insert into testTable select id, name, sex from studentsTable1;这儿完成了将表studentsTable1列id name sex中的全部数据插入到了表testTable中,
         //第三步：drop table if exists studentsTable1;删除原来的表studentsTable1,
         //第四步：alter table testTable rename to studentsTable1;将testTable重命名为studentsTable1,若是你要修改列名，方式和删除一样，可自己操作一下
-        
         
         [_myDb executeStatements:@"select * from studentsTable1" withResultBlock:^int(NSDictionary *dictionary) {
             NSLog(@"对列操作后查询到的结果:%@", [[dictionary allValues] componentsJoinedByString:@","]);
