@@ -1,5 +1,5 @@
 //
-//  Car.h
+//  CarModel.h
 //  SaveTheData
 //
 //  Created by hooyking on 2020/4/15.
@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EngineModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Car : NSObject <NSCoding>
+//@class EngineModel;
+
+@interface CarModel : NSObject <NSCoding>
 
 @property (nonatomic, assign) float price;
 @property (nonatomic, copy) NSString *brand;
 @property (nonatomic, strong) NSArray *wheelArr;
+@property (nonatomic, strong) EngineModel *engine;
 
 @end
 

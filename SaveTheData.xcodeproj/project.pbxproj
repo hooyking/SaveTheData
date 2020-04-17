@@ -20,14 +20,15 @@
 		315E34342446F97300A01BEC /* InputOutputBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E34332446F97300A01BEC /* InputOutputBaseViewController.m */; };
 		315E34372446FC6E00A01BEC /* PlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E34362446FC6E00A01BEC /* PlistViewController.m */; };
 		315E343A2446FD6D00A01BEC /* UserDefaultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E34392446FD6D00A01BEC /* UserDefaultsViewController.m */; };
-		315E343D2446FDB200A01BEC /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E343C2446FDB200A01BEC /* Car.m */; };
-		315E34402446FDD900A01BEC /* KeyedArchiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E343F2446FDD900A01BEC /* KeyedArchiverViewController.m */; };
 		315E34432447016A00A01BEC /* SQLiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E34422447016A00A01BEC /* SQLiteViewController.m */; };
 		315E34462447032800A01BEC /* picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 315E34452447032800A01BEC /* picture.jpg */; };
 		315E344A2447080600A01BEC /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315E34492447080600A01BEC /* CoreDataViewController.m */; };
 		315E344D2447090600A01BEC /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 315E344B2447090600A01BEC /* CoreData.xcdatamodeld */; };
 		319FD3322448353A00CE6409 /* PersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 319FD3312448353A00CE6409 /* PersonModel.m */; };
 		319FD3342448428800CE6409 /* HK.plist in Resources */ = {isa = PBXBuildFile; fileRef = 319FD3332448428800CE6409 /* HK.plist */; };
+		31DEA2E124495AF600ED97C6 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DEA2DB24495AF600ED97C6 /* CarModel.m */; };
+		31DEA2E224495AF600ED97C6 /* EngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DEA2DC24495AF600ED97C6 /* EngineModel.m */; };
+		31DEA2E324495AF600ED97C6 /* KeyedArchiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DEA2E024495AF600ED97C6 /* KeyedArchiverViewController.m */; };
 		7210235072A2F812A92FA7BD /* Pods_SaveTheData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5256ABDBF997CACA66E36396 /* Pods_SaveTheData.framework */; };
 		F0D6B494C6E354BA58419445 /* Pods_SaveTheDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF789FFDE325B74B8DF216E /* Pods_SaveTheDataTests.framework */; };
 /* End PBXBuildFile section */
@@ -74,10 +75,6 @@
 		315E34362446FC6E00A01BEC /* PlistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlistViewController.m; sourceTree = "<group>"; };
 		315E34382446FD6D00A01BEC /* UserDefaultsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultsViewController.h; sourceTree = "<group>"; };
 		315E34392446FD6D00A01BEC /* UserDefaultsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsViewController.m; sourceTree = "<group>"; };
-		315E343B2446FDB200A01BEC /* Car.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
-		315E343C2446FDB200A01BEC /* Car.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
-		315E343E2446FDD900A01BEC /* KeyedArchiverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedArchiverViewController.h; sourceTree = "<group>"; };
-		315E343F2446FDD900A01BEC /* KeyedArchiverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyedArchiverViewController.m; sourceTree = "<group>"; };
 		315E34412447016A00A01BEC /* SQLiteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLiteViewController.h; sourceTree = "<group>"; };
 		315E34422447016A00A01BEC /* SQLiteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLiteViewController.m; sourceTree = "<group>"; };
 		315E34452447032800A01BEC /* picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = picture.jpg; sourceTree = "<group>"; };
@@ -95,6 +92,12 @@
 		319FD3302448353A00CE6409 /* PersonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonModel.h; sourceTree = "<group>"; };
 		319FD3312448353A00CE6409 /* PersonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonModel.m; sourceTree = "<group>"; };
 		319FD3332448428800CE6409 /* HK.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HK.plist; sourceTree = "<group>"; };
+		31DEA2DB24495AF600ED97C6 /* CarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		31DEA2DC24495AF600ED97C6 /* EngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineModel.m; sourceTree = "<group>"; };
+		31DEA2DD24495AF600ED97C6 /* KeyedArchiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyedArchiverViewController.h; sourceTree = "<group>"; };
+		31DEA2DE24495AF600ED97C6 /* EngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineModel.h; sourceTree = "<group>"; };
+		31DEA2DF24495AF600ED97C6 /* CarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
+		31DEA2E024495AF600ED97C6 /* KeyedArchiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyedArchiverViewController.m; sourceTree = "<group>"; };
 		3207B3C84E735C19D913CBA3 /* Pods-SaveTheData-SaveTheDataUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveTheData-SaveTheDataUITests.release.xcconfig"; path = "Target Support Files/Pods-SaveTheData-SaveTheDataUITests/Pods-SaveTheData-SaveTheDataUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4EE5B2812449442F3BD5B846 /* Pods_SaveTheData_SaveTheDataUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaveTheData_SaveTheDataUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5256ABDBF997CACA66E36396 /* Pods_SaveTheData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaveTheData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,10 +269,12 @@
 		315E342F2446F8E200A01BEC /* NSKeyedArchiver */ = {
 			isa = PBXGroup;
 			children = (
-				315E343B2446FDB200A01BEC /* Car.h */,
-				315E343C2446FDB200A01BEC /* Car.m */,
-				315E343E2446FDD900A01BEC /* KeyedArchiverViewController.h */,
-				315E343F2446FDD900A01BEC /* KeyedArchiverViewController.m */,
+				31DEA2DF24495AF600ED97C6 /* CarModel.h */,
+				31DEA2DB24495AF600ED97C6 /* CarModel.m */,
+				31DEA2DE24495AF600ED97C6 /* EngineModel.h */,
+				31DEA2DC24495AF600ED97C6 /* EngineModel.m */,
+				31DEA2DD24495AF600ED97C6 /* KeyedArchiverViewController.h */,
+				31DEA2E024495AF600ED97C6 /* KeyedArchiverViewController.m */,
 			);
 			path = NSKeyedArchiver;
 			sourceTree = "<group>";
@@ -575,14 +580,15 @@
 				315E343A2446FD6D00A01BEC /* UserDefaultsViewController.m in Sources */,
 				315E34342446F97300A01BEC /* InputOutputBaseViewController.m in Sources */,
 				315E34032446F4DA00A01BEC /* main.m in Sources */,
-				315E34402446FDD900A01BEC /* KeyedArchiverViewController.m in Sources */,
+				31DEA2E224495AF600ED97C6 /* EngineModel.m in Sources */,
 				315E34432447016A00A01BEC /* SQLiteViewController.m in Sources */,
 				315E33F52446F4DA00A01BEC /* SceneDelegate.m in Sources */,
 				315E344D2447090600A01BEC /* CoreData.xcdatamodeld in Sources */,
-				315E343D2446FDB200A01BEC /* Car.m in Sources */,
+				31DEA2E124495AF600ED97C6 /* CarModel.m in Sources */,
 				315E344A2447080600A01BEC /* CoreDataViewController.m in Sources */,
 				319FD3322448353A00CE6409 /* PersonModel.m in Sources */,
 				315E34372446FC6E00A01BEC /* PlistViewController.m in Sources */,
+				31DEA2E324495AF600ED97C6 /* KeyedArchiverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
