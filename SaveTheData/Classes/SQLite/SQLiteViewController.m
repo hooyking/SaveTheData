@@ -59,8 +59,8 @@
     //但是FMDatabaseQueue就不会，它是有序的且在同一个线程执行，会按照程序顺序执行，就不会抢夺什么资源，全部都会成功)
     
     //这个方法插入数据不好弄，可看下边的moreQueue
-//    [self moreOperate];
-    [self moreQueue];
+    [self moreOperate];
+//    [self moreQueue];
     
     //这儿顺便讲下对列的操作
     //[self operateColumn];
